@@ -358,12 +358,12 @@ module.exports = function(mongoose) {
 
             // temp user is found (i.e. user accessed URL before their data expired)
             if (tempUserData) {
-                // var userData = JSON.parse(JSON.stringify(tempUserData)), 
-                var userData = {},
+                var userData = JSON.parse(JSON.stringify(tempUserData.toObject())),
+                // var userData = {},
                     User = options.persistentUserModel,
                     user;
 
-                for (var property in tempUserData) userData[property] = tempUserData[property];
+                // for (var property in tempUserData) userData[property] = tempUserData[property];
 
                 delete userData[options.URLFieldName];
                 user = new User(userData);
